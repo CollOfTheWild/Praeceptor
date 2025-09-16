@@ -14,7 +14,7 @@ The entire system will be powered by a distributed "split-brain" architecture, l
 
 The system is a distributed network of three core components, each with a specialized role:
 
-* **The Body (Moorebot Scout):** A simple, network-connected client. Its sole purpose is to stream raw sensor data (video, audio, IMU, ToF) and to execute low-level motor commands. It is a dumb client with no complex logic. Its fixed IP address is **`192.168.86.48
+* **The Body (Moorebot Scout):** A simple, network-connected client. Its sole purpose is to stream raw sensor data (video, audio, IMU, ToF) and to execute low-level motor commands. It is a dumb client with no complex logic. Its fixed IP address is **192.168.86.48**
 
 <img width="1159" height="869" alt="image" src="https://github.com/user-attachments/assets/697b7c96-ba3e-42e0-ac06-eab654f8c91d" />
 
