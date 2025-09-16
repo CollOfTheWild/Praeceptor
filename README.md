@@ -89,7 +89,7 @@ The project will be executed in two distinct, sequential phases to ensure a stab
 | ID | Title | Description | Status |
 | :--- | :--- | :--- | :--- |
 | **FEAT-P1** | **Core Communication** | Establish a reliable, bidirectional data link between the Moorebot Scout and the Ryzen PC using ROS 2. | To Do |
-| **TASK-P1-T1** | **SSH & ROS Setup** | Confirm SSH access and configure the Ryzen PC to act as a ROS 2 client to the Moorebot's ROS master. Moorebot IP is `192.168.86.48`. | Done |
+| **TASK-P1-T1** | **SSH & ROS Setup** | Confirm SSH access and configure the Ryzen PC to act as a ROS 2 client to the Moorebot's ROS master. Moorebot IP is `192.168.86.48`. | To Do |
 | **TASK-P1-T2** | **Data Stream Validation** | Write Python scripts on the PC to subscribe to and verify data from the robot's ROS topics (IMU, ToF, video, audio). | To Do |
 | **TASK-P1-T3** | **Robot Control Script** | Create a Python script on the PC that publishes to the Scout's movement topic (`/cmd_vel`) and test basic commands. | To Do |
 | **FEAT-P2** | **Local AI & SLAM** | Integrate local AI models and a robust SLAM system across the Ryzen PC and Mac Mini to handle navigation and object detection. | To Do |
