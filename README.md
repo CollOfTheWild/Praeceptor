@@ -16,7 +16,7 @@ The system is a distributed network of three core components, each with a specia
 
 * **The Body (Moorebot Scout):** A simple, network-connected client. Its sole purpose is to stream raw sensor data (video, audio, IMU, ToF) and to execute low-level motor commands. It is a dumb client with no complex logic. Its fixed IP address is **192.168.86.48**
 
-<img width="1159" height="869" alt="image" src="https://github.com/user-attachments/assets/697b7c96-ba3e-42e0-ac06-eab654f8c91d" />
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/697b7c96-ba3e-42e0-ac06-eab654f8c91d" />
 
 
 * **The Central Nervous System (Ryzen PC):** The primary development hub. This machine runs the main control script, the SLAM system, and all networking logic. It makes all real-time decisions regarding navigation and control. All development and the central repository reside here.
@@ -28,6 +28,8 @@ The LLM will be integrated as a high-level planner, working in tandem with the t
 
 1.  **Conversational Role (Phase 2):** The LLM will handle all natural language input and output. It will understand your voice commands and generate a friendly, conversational response.
 2.  **Semantic Navigation Role:** When a high-level command like "go to the kitchen" is given, the LLM will translate this abstract request into a tangible goal for the robot. It does this by generating a plan (e.g., a sequence of navigation goals) that your traditional control system can understand and execute.
+
+> **SLAM** stands for **Simultaneous Localization and Mapping**. It is a computational process that allows a robot to build a map of an unknown environment while at the same time keeping track of its own location within that map. The algorithm uses a combination of sensor data (such as from a camera and IMU) to create a consistent representation of the world, which is essential for autonomous navigation.
 
 ---
 
@@ -109,3 +111,51 @@ The project will be executed in two distinct, sequential phases to ensure a stab
 | **TASK-P4-T1** | **LLM Integration** | Connect the Ryzen PC's main script to the Mac Mini's local LLM server. This LLM will be used for both conversation and semantic planning. | To Do |
 | **TASK-P4-T2** | **TTS/STT Pipeline** | Implement a local STT model (like Whisper) and a TTS model (like Piper) on the Mac Mini to handle all voice input and output. | To Do |
 | **TASK-P4-T3** | **High-Level Planning** | The LLM will translate natural language requests (e.g., "please patrol the living room") into specific goals for the traditional navigation system. | To Do |
+
+### User Control: Phase 1 vs. Phase 2
+
+Here are examples of how you will control the robot in the different phases of the project.
+
+---
+
+### **Phase 1: Manual/Programmatic Control**
+
+In this phase, you act as the robot's high-level programmer, issuing specific commands via a terminal on the Ryzen PC. The robot's intelligence is limited to executing these commands and avoiding obstacles. This is the foundational stage for building and testing the core systems.
+
+* **Move to a specific point:**
+    ```bash
+    $ python3 main_control.py --go-to-point x=5.2 y=3.1
+    ```
+
+* **Move with a velocity command:**
+    ```bash
+    $ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.5}, angular: {z: 0.0}}' --once
+    ```
+
+* **Start a mapping routine:**
+    ```bash
+    $ python3 main_control.py --start-mapping
+    ```
+
+* **Navigate to a pre-programmed location:**
+    ```bash
+    $ python3 main_control.py --go-to-location living_room_base
+    ```
+
+* **Search for an object:**
+    ```bash
+    $ python3 main_control.py --find-object sippy_cup
+    ```
+
+---
+
+### **Phase 2: Natural Language Control (with LLM)**
+
+Once the LLM is integrated, the user's role shifts from a "programmer" to a "manager." The user can now give abstract, high-level commands in natural language. The LLM handles the complex task of translating these requests into the specific, low-level commands needed by the Phase 1 control system.
+
+**Examples of natural language commands (spoken or typed):**
+
+* **High-level action:** "Praeceptor, please go patrol the living room and make sure everything is okay."
+* **Complex search:** "Go to the kitchen and see if my favorite mug is on the counter."
+* **Conditional command:** "Go to the bathroom, and if the light is off, please tell me."
+* **Social commands:** "Follow me," or "Go say hello to Mom."
