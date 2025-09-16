@@ -20,6 +20,8 @@ The system is a distributed network of three core components, each with a specia
 
 
 * **The Central Nervous System (Ryzen PC):** The primary development hub. This machine runs the main control script, the SLAM system, and all networking logic. It makes all real-time decisions regarding navigation and control. All development and the central repository reside here.
+  > **SLAM** stands for **Simultaneous Localization and Mapping**. It is a computational process that allows a robot to build a map of an unknown environment while at the same time keeping track of its own location within that map. The algorithm uses a combination of sensor data (such as from a camera and IMU) to create a consistent representation of the world, which is essential for autonomous navigation.
+
 * **The AI Cortex (M2 Mac Mini):** A dedicated, local API server for AI inference. It will host two separate services: a vision model for real-time object detection and an LLM for semantic planning and conversation (to be implemented in Phase 2).
 
 ### The LLM's Role in Semantic Navigation
@@ -29,7 +31,6 @@ The LLM will be integrated as a high-level planner, working in tandem with the t
 1.  **Conversational Role (Phase 2):** The LLM will handle all natural language input and output. It will understand your voice commands and generate a friendly, conversational response.
 2.  **Semantic Navigation Role:** When a high-level command like "go to the kitchen" is given, the LLM will translate this abstract request into a tangible goal for the robot. It does this by generating a plan (e.g., a sequence of navigation goals) that your traditional control system can understand and execute.
 
-> **SLAM** stands for **Simultaneous Localization and Mapping**. It is a computational process that allows a robot to build a map of an unknown environment while at the same time keeping track of its own location within that map. The algorithm uses a combination of sensor data (such as from a camera and IMU) to create a consistent representation of the world, which is essential for autonomous navigation.
 
 ---
 
